@@ -1,6 +1,6 @@
 # Fan Controller System with ATmega32
 
-## This project implements a temperature-controlled fan system using the ATmega32 microcontroller. The fan's state is automatically adjusted based on the temperature read by an LM35 temperature sensor. The system also uses an LCD to display the current temperature and fan status, and PWM is utilized to control the fan speed.
+This project implements a temperature-controlled fan system using the ATmega32 microcontroller. The fan's state is automatically adjusted based on the temperature read by an LM35 temperature sensor. The system also uses an LCD to display the current temperature and fan status, and PWM is utilized to control the fan speed.
 
 ## Features
 
