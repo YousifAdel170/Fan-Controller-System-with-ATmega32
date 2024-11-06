@@ -1,0 +1,6 @@
+/******************************************************************************
+ * Module: DC Motor
+ * File Name: dc_motor.c
+ * Description: Source file for the AVR DC_motor driver
+ * Author:	Yousif Adel
+ *******************************************************************************/

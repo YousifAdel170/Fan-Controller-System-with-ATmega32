@@ -1,0 +1,31 @@
+01:20:02 **** Incremental Build of configuration Debug for project Project3 ****
+make all 
+Building file: ../fan.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"fan.d" -MT"fan.o" -c -o "fan.o" "../fan.c"
+Finished building: ../fan.c
+ 
+Building target: Project3.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Project3.map -mmcu=atmega32 -o "Project3.elf"  ./adc.o ./dc_motor.o ./fan.o ./gpio.o ./lcd.o ./lm35_sensor.o ./pwm.o   
+Finished building target: Project3.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Project3.elf  >"Project3.lss"
+Finished building: Project3.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Project3.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    9690 bytes (29.6% Full)
+(.text + .data + .bootloader)
+
+Data:        307 bytes (15.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

@@ -1,0 +1,98 @@
+#include "lcd.h"
+#include "dc_motor.h"
+#include "lm35_sensor.h"
+#include "adc.h"
+uint8 g_duty_cycle = 0;
+uint8 g_temp;
+/*
+
+void adjustTemperatureFan(void)
+{
+	uint8 temperature = LM35_getTemperature();
+	if(temperature < 30)
+	{
+		g_duty_cycle = 256 * (0/100);
+		PWM_Timer0_Start(g_duty_cycle);
+		DcMotor_Rotate(OFF,g_duty_cycle);
+		LCD_moveCursor(0,0);
+		LCD_displayString("Fan is OFF");
+		LCD_moveCursor(1,0);
+		LCD_displayString("Temp is ");
+		LCD_integerToString(temperature);
+	}
+	else if ((temperature >= 30) && (temperature >60))
+	{
+		g_duty_cycle = 256 * (25/100);
+		PWM_Timer0_Start(g_duty_cycle);
+		DcMotor_Rotate(ON,g_duty_cycle);
+		LCD_moveCursor(0,0);
+		LCD_displayString("Fan is ON");
+		LCD_moveCursor(1,0);
+		LCD_displayString("Temp is ");
+		LCD_integerToString(temperature);
+	}
+	else if ((temperature >= 60) && (temperature >90))
+	{
+		g_duty_cycle = 256 * (50/100);
+		PWM_Timer0_Start(g_duty_cycle);
+		DcMotor_Rotate(ON,g_duty_cycle);
+		LCD_moveCursor(0,0);
+		LCD_displayString("Fan is ON");
+		LCD_moveCursor(1,0);
+		LCD_displayString("Temp is ");
+		LCD_integerToString(temperature);
+	}
+	else if ((temperature >= 90) && (temperature >120))
+	{
+		g_duty_cycle = 256 * (75/100);
+		PWM_Timer0_Start(g_duty_cycle);
+		DcMotor_Rotate(ON,g_duty_cycle);
+		LCD_moveCursor(0,0);
+		LCD_displayString("Fan is ON");
+		LCD_moveCursor(1,0);
+		LCD_displayString("Temp is ");
+		LCD_integerToString(temperature);
+	}
+	else if ((temperature >= 120))
+	{
+		g_duty_cycle = 256 * (100/100);
+		PWM_Timer0_Start(g_duty_cycle);
+		DcMotor_Rotate(ON,g_duty_cycle);
+		LCD_moveCursor(0,0);
+		LCD_displayString("Fan is ON");
+		LCD_moveCursor(1,0);
+		LCD_displayString("Temp is ");
+		LCD_integerToString(temperature);
+	}
+
+}
+*/
+
+int main(void)
+{
+	/*  Create configuration structure for ADC driver */
+	ADC_ConfigType	ADC_Configurations = {INTERNAL , D_F_8};
+	LCD_init(); /* initialize LCD driver */
+	ADC_init(&ADC_Configurations); /* initialize ADC driver */
+	LCD_displayString("Temp =    C");
+	DcMotor_init();
+	while(1)
+	{
+		adjustTemperatureFan();
+
+		g_temp = LM35_getTemperature();
+
+		/* Display the temperature value every time at same position */
+		LCD_moveCursor(0,7);
+		if(g_temp >= 100)
+		{
+			LCD_intgerToString(g_temp);
+		}
+		else
+		{
+			LCD_intgerToString(g_temp);
+			/* In case the digital value is two or one digits print space in the next digit place */
+			LCD_displayCharacter(' ');
+		}
+	}
+}
